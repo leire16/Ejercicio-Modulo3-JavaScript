@@ -52,24 +52,7 @@ body {
     height: auto;
     margin-top: 20px;
   }
-/* Estilos para el contenedor de información */
-.title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background-color: #f8f8f8;
-    padding: 20px;
-    margin-top: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Estilos para la información dentro del contenedor */
-  .info {
-    margin-right: 20px;
-  }
-  
+
   /* Estilos para las imágenes */
   #resultadoPizza {
     display: flex;
@@ -85,4 +68,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
-    
+
+  .red {
+    color: red;
+  }
