@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pizza Personalizada</title>
+  <link rel="stylesheet" href="./assets/css/index.css">
+</head>
+<body>
+
+    <section>
+        <form id="pizzaForm">
+            <label for="masa">Selecciona la masa:</label>
+            <select id="masa" name="masa">
+            <option value="clasica">Clásica</option>
+            <option value="fina">Fina</option>
+            <option value="3-pisos">3 Pisos</option>
+            </select>
+
+            <label for="tamaño">Selecciona el tamaño:</label>
+            <select id="tamaño" name="tamaño">
+            <option value="mediana">Mediana</option>
+            <option value="familiar">Familiar</option>
+            <option value="individual">Individual</option>
+            </select>
+
+            <fieldset>
+            <legend>Elige tus ingredientes de carne:</legend>
+            <label><input type="checkbox" name="carnes" value="bacon"> Bacon</label>
+            <label><input type="checkbox" name="carnes" value="pepperoni"> Pepperoni</label>
+            <label><input type="checkbox" name="carnes" value="pollo"> Pollo</label>
+            <!-- Agrega más opciones de carnes según tus necesidades -->
+            </fieldset>
+
+            <fieldset>
+            <legend>Elige tus ingredientes de mar:</legend>
+            <label><input type="checkbox" name="mariscos" value="camaron"> Camarón</label>
+            <label><input type="checkbox" name="mariscos" value="pulpo"> Pulpo</label>
+            <!-- Agrega más opciones de mariscos según tus necesidades -->
+            </fieldset>
+
+            <fieldset>
+            <legend>Elige tus ingredientes de verduras:</legend>
+            <label><input type="checkbox" name="verduras" value="tomate"> Tomate</label>
+            <label><input type="checkbox" name="verduras" value="champinones"> Champiñones</label>
+            <!-- Agrega más opciones de verduras según tus necesidades -->
+            </fieldset>
+
+            <label for="nombre-pizza">Nombre de tu pizza:</label>
+            <input type="text" id="nombre-pizza" name="nombre-pizza" placeholder="Escribe el nombre de tu pizza">
+
+            <label for="hora-recoger">Horario para recoger la pizza:</label>
+            <input type="time" id="hora-recoger" name="hora-recoger">
+
+            <button id="crearPizza" type="button" >Crear Pizza</button>
+        </form>
+
+        <div id="resultadoPizza">
+            <img id="pizzaImage" src="" alt="Pizza personalizada">
+        </div>
+    </section>
+
+    <div class="container d-flex justify-content-around box-blue">
+        <div class="tweet-container me-4 box-blue"></div>
+    </div>
+
+    <script src="./assets/js/index.js"></script>
+</body>
+</html>
