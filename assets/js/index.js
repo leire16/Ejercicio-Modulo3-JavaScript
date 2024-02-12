@@ -20,7 +20,7 @@ function dibujarTopping(ctx, topping) {
 }
 
 function validarCampoObligatorio(input) {
-  if (!input.value) {
+  if (input.value=== "") {
     input.classList.add("is-invalid");
     input.classList.add("form-control"); // Agregar clase de Bootstrap
   } else {
@@ -31,12 +31,28 @@ function validarCampoObligatorio(input) {
 
 function validarCheckboxes(container) {
   const totalSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked').length;
+  // Validar que aparezca el mensaje solo cuando no hay checkboxes seleccionados
   if (totalSeleccionados === 0) {
-    const mensaje = document.createElement("p");
-    mensaje.classList.add("red");
-    mensaje.textContent = "Seleccione al menos 1 opción entre las categorías";
-    container.appendChild(mensaje);
+    mostrarMensajeError(container);
+  } else {
+    // Si hay al menos un checkbox seleccionado, ocultar el mensaje
+    ocultarMensajeError(container);
   }
+}
+
+// Función para mostrar el mensaje de error
+function mostrarMensajeError(container) {
+  limpiarMensajesValidacion();
+
+  const mensaje = document.createElement("p");
+  mensaje.classList.add("red");
+  mensaje.textContent = "Seleccione al menos 1 opción entre las categorías";
+  container.appendChild(mensaje);
+}
+
+// Función para ocultar el mensaje de error
+function ocultarMensajeError(container) {
+  limpiarMensajesValidacion();
 }
 
 function limpiarMensajesValidacion() {
@@ -80,12 +96,27 @@ window.addEventListener("DOMContentLoaded", () => {
     validarCampoObligatorio(tamañoInput);
     validarCampoObligatorio(nombrePizzaInput);
     validarCampoObligatorio(horaRecogerInput);
+    // Agregar escuchadores de eventos "input" para validar los campos obligatorios
+    masaInput.addEventListener("change", () => validarCampoObligatorio(masaInput));
+    tamañoInput.addEventListener("change", () => validarCampoObligatorio(tamañoInput));
+
+    nombrePizzaInput.addEventListener("input", () => validarCampoObligatorio(nombrePizzaInput));
+    horaRecogerInput.addEventListener("input", () => validarCampoObligatorio(horaRecogerInput));
 
     if (container) {
       container.innerHTML = ""; // Limpiar mensajes anteriores
     }
-
+    
     validarCheckboxes(container);
+
+    // Agregar escuchador de eventos "change" a todos los checkboxes
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach((checkbox) => {
+      checkbox.addEventListener("change", () => {
+        // Validar los checkboxes cada vez que cambian
+        validarCheckboxes(container);
+      });
+    });
 
     // Si hay mensajes de validación o algún campo obligatorio está vacío, detener el proceso
     if (container.querySelector(".red") || document.querySelector(".is-invalid")) {
@@ -139,3 +170,75 @@ window.addEventListener("DOMContentLoaded", () => {
     limpiarCheckboxes('verduras');
   });
 });
+
+// Añadir precios a los productos. Esto no esta acabado ni mucho menos, hay que mirar que s irve y que no.
+
+/*document.addEventListener("DOMContentLoaded", function () {
+  // Define an array of select element ids
+  let selectIds = ["masa", "tamaño", "carnes", "mariscos", "verduras"];
+
+  // Loop through each select element
+  selectIds.forEach(function (selectId) {
+    let select = document.getElementById(selectId);
+    let options = select.getElementsByTagName("option");
+
+    // Loop through each option of the current select element
+    for (let i = 0; i < options.length; i++) {
+      let option = options[i];
+      let price = option.getAttribute("data-price");
+
+      // If the option has a price attribute
+      if (price) {
+        // Create a span element for the price
+        let priceSpan = document.createElement("span");
+        priceSpan.className = "price"; // Add a class to style it
+        priceSpan.textContent = " - " + price + "€";
+
+        // Insert the span after the option text
+        option.appendChild(priceSpan);
+      }
+    }
+  });
+
+  // Funcion que calcula el precio total
+  function calcularPrecioTotal() {
+    const precioBase = 5; // precio Base
+    let total = precioBase;
+
+    // Add prices of selected checkboxes for each category
+    total += sumarPreciosCheckbox("carnes");
+    total += sumarPreciosCheckbox("mariscos");
+    total += sumarPreciosCheckbox("verduras");
+
+    return total;
+  }
+
+  // Function to sum prices of selected checkboxes for a category
+  function sumarPreciosCheckbox(categoria) {
+    const checkboxes = document.querySelectorAll(
+      `input[name=${categoria}]:checked`
+    );
+    let totalCategoria = 0;
+
+    checkboxes.forEach((checkbox) => {
+      const precio = parseFloat(checkbox.getAttribute("data-price"));
+      totalCategoria += precio;
+    });
+
+    return totalCategoria;
+  }
+
+  // Function to update the total price in the HTML
+  function actualizarPrecioTotal() {
+    const total = calcularPrecioTotal();
+    const formattedTotal = "+" + total + "€"; // Add plus sign
+    document.getElementById("totalValue").textContent = formattedTotal;
+  }
+
+  // Event listener for checkboxes to update total price when checked/unchecked
+  document
+    .querySelectorAll('input[type="checkbox"]')
+    .forEach(function (checkbox) {
+      checkbox.addEventListener("change", actualizarPrecioTotal);
+    });
+});*/

@@ -4,63 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pizza Personalizada</title>
-  <link rel="stylesheet" href="./assets/css/index.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+  <link rel="stylesheet" href="./assets/css/index.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous"/>
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+</head>
 <body>
+  <header>
+    <div class="container-fluid py-5 slider"></div>
+  </header>
     <section>
         <form id="pizzaForm">
             <label for="masa">Selecciona la masa: *</label>
             <select id="masa" name="masa">
-            <option value="">-- Selecciona una masa --</option>
-            <option value="clasica">Clásica</option>
-            <option value="fina">Fina</option>
-            <option value="3-pisos">3 Pisos</option>
+                <option value="">-- Selecciona una masa --</option>
+                <option value="clasica" data-price="5">Clásica</option>
+                <option value="fina" data-price="5">Fina</option>
+                <option value="3-pisos" data-price="7">3 Pisos</option>
             </select>
 
             <label for="tamaño">Selecciona el tamaño: *</label>
             <select id="tamaño" name="tamaño">
-            <option value="">-- Selecciona un tamaño --</option>
-            <option value="mediana">Mediana</option>
-            <option value="familiar">Familiar</option>
-            <option value="individual">Individual</option>
+                <option value="">-- Selecciona un tamaño --</option>
+                <option value="individual" data-price="0">Individual</option>
+                <option value="mediana" data-price="2">Mediana</option>
+                <option value="familiar" data-price="5">Familiar</option>             
             </select>
 
-            <fieldset>
-            <div id="messages-container"></div>
-            <legend>Elige tus ingredientes de carne:</legend>
-            <label><input type="checkbox" name="carnes" value="bacon"> Bacon</label>
-            <label><input type="checkbox" name="carnes" value="pepperoni"> Pepperoni</label>
-            <label><input type="checkbox" name="carnes" value="pollo"> Pollo</label>
-            <!-- Agrega más opciones de carnes según tus necesidades -->
-            </fieldset>
-
-            <fieldset>
-            <legend>Elige tus ingredientes de mar:</legend>
-            <label><input type="checkbox" name="mariscos" value="atún"> Atún</label>
-            <label><input type="checkbox" name="mariscos" value="anchoas"> Anchos</label>
-            <label><input type="checkbox" name="mariscos" value="gambas"> Gambas</label>
-            <!-- Agrega más opciones de mariscos según tus necesidades -->
-            </fieldset>
-
-            <fieldset>
-            <legend>Elige tus ingredientes de verduras:</legend>
-            <label><input type="checkbox" name="verduras" value="tomate"> Tomate</label>
-            <label><input type="checkbox" name="verduras" value="champiñones"> Champiñones</label>
-            <!-- Agrega más opciones de verduras según tus necesidades -->
-            </fieldset>
-
-            <label for="nombre-pizza">Nombre de tu pizza: *</label>
+            <div id="checkboxes-container">
+                <fieldset>
+                  <div id="messages-container"></div>
+                  <legend>Elige tus ingredientes de carne:</legend>
+                  <label><input type="checkbox" name="carnes" value="york"> York</label>
+                  <label><input type="checkbox" name="carnes" value="bacon"> Bacon</label>
+                  <label><input type="checkbox" name="carnes" value="carne vacuno"> Carne Vacuno</label>
+                  <label><input type="checkbox" name="carnes" value="pollo"> Pollo</label>
+                  <label><input type="checkbox" name="carnes" value="pepperoni"> Pepperoni</label>
+                </fieldset>
+              
+                <fieldset>
+                  <legend>Elige tus ingredientes de mar:</legend>
+                  <label><input type="checkbox" name="mariscos" value="atún"> Atún</label>
+                  <label><input type="checkbox" name="mariscos" value="anchoas"> Anchos</label>
+                  <label><input type="checkbox" name="mariscos" value="gambas"> Gambas</label>
+                  <!-- Agrega más opciones de mariscos según tus necesidades -->
+                </fieldset>
+              
+                <fieldset>
+                  <legend>Elige tus ingredientes de verduras:</legend>           
+                  <label><input type="checkbox" name="verduras" value="champiñon"> Champiñon</label>
+                  <label><input type="checkbox" name="verduras" value="cebolla"> Cebolla</label>
+                  <label><input type="checkbox" name="verduras" value="tomate"> Tomate</label>
+                  <label><input type="checkbox" name="verduras" value="pimiento"> Pimiento</label>
+                </fieldset>
+              </div>
+              
+            <label for="nombre-pizza" class="legend">Nombre de tu pizza: *</label>
             <input type="text" id="nombre-pizza" name="nombre-pizza" placeholder="Escribe el nombre de tu pizza">
 
-            <label for="hora-recoger">Horario para recoger la pizza: *</label>
+            <label for="hora-recoger" class="legend">Horario para recoger la pizza: *</label>
             <input type="time" id="hora-recoger" name="hora-recoger">
 
             <button id="crearPizza" type="button" >Crear Pizza</button>
         </form>
 
-        <div id="resultadoPizza">
-            
+        <div id="resultadoPizza" class="row align-items-end">
+          <div class="col text-start">
+            <legend>Precio de tu pizza</legend>
+          </div>
+          <div class="col text-end">
+            <legend id="totalPrice">
+              Total: <span id="totalValue">0€</span>
+            </legend>
+          </div>
         </div>
     </section>
 
@@ -68,6 +83,7 @@
         <div class="tweet-container me-4 box-blue"></div>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="./assets/js/index.js"></script>
 </body>
 </html>

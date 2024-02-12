@@ -1,74 +1,155 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f9fa;
-  }
-  
-  section {
-    max-width: 600px;
-    margin: 50px auto;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  form {
-    display: grid;
-    gap: 10px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  fieldset {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 15px;
-  }
-  
-  legend {
-    font-weight: bold;
-  }
-  
-  input[type="checkbox"] {
-    margin-right: 5px;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  img {
-    max-width: 100%;
-    height: auto;
-    margin-top: 20px;
-  }
+  font-family: "roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
 
-  /* Estilos para las imágenes */
-  #resultadoPizza {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
+.slider {
+  width: 100%;
+  background: url("../img/slider.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 300px;
+  text-align: center;
+  position: relative;
+  left: 0;
+  right: 0;
+  transition: height 0.8s ease;
+}
+@media only screen and (max-width: 900px) {
+  .slider {
+    /* Add your mobile-specific styles here */
+    height: 200px;
+    /* Other styles as needed */
   }
-  
-  #resultadoPizza img {
-    max-width: 100%;
-    height: auto;
-    margin-right: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
+}
 
-  .red {
-    color: red;
-  }
+section {
+  max-width: 600px;
+  margin: 50px auto;
+  background-color: #fff1da;
+  border: 2px solid #da9760 !important;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+form {
+  display: grid;
+  gap: 10px;
+}
+
+label {
+  font-weight: 400;
+  padding-right: 20px;
+  font-size: 14px;
+}
+
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 50px;
+}
+
+legend,
+.legend {
+  font-weight: bold;
+  font-size: 18px !important;
+}
+
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+button {
+  background-color: #da9760;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 8px !important;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #a4724a;
+}
+
+img {
+  max-width: 100%;
+  height: 100%;
+  margin-top: 20px;
+}
+
+/* Estilos para las imágenes */
+#resultadoPizza {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+#resultadoPizza img {
+  max-width: 100%;
+  height: auto;
+  margin-right: 10px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.red {
+  color: red;
+}
+
+/* Estilos para el select2 */
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__rendered {
+  font-size: 15px;
+
+  line-height: 25px !important;
+}
+
+/*this changes the inside of the dropdown*/
+.select2-dropdown {
+  color: #000;
+  line-height: 25px;
+  font-size: 15px;
+}
+/*this changes the color inside of the dropdown*/
+
+.select2-container--default
+  .select2-results__option--highlighted[aria-selected] {
+  background-color: #da9760 !important;
+  color: #fff !important;
+}
+.select2-container--default .select2-selection--single {
+  border-radius: 8px !important;
+  border: 2px solid #da9760 !important;
+  display: flex;
+  align-items: center;
+  color: #000 !important;
+  font-size: 15px;
+  padding: 8px !important;
+  height: 100% !important;
+}
+
+/* Flechita cambiar color y posicion */
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__arrow {
+  height: 100% !important;
+  color: #da9760;
+}
+.select2-container--default
+  .select2-selection--single
+  .select2-selection__arrow
+  b {
+  border-color: #da9760 transparent transparent transparent !important;
+}
+
+/* no estoy segura si sirve aun*/
+.dropdown-option .price {
+  color: #999;
+}
