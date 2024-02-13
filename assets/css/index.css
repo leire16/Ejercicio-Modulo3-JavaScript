@@ -20,17 +20,25 @@ body {
 }
 @media only screen and (max-width: 900px) {
   .slider {
-    /* Add your mobile-specific styles here */
     height: 200px;
-    /* Other styles as needed */
   }
 }
 
 section {
-  max-width: 600px;
+  max-width: 800px;
   margin: 50px auto;
+  
   background-color: #fff1da;
   border: 2px solid #da9760 !important;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.section2 {
+  max-width: 800px;
+  margin: 10px auto;
+  background-color: #f4ffda;
+  border: 2px solid #bee068 !important;
   padding: 40px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -51,13 +59,14 @@ fieldset {
   border: 1px solid #ddd;
   border-radius: 8px;
   padding: 10px;
-  margin-bottom: 50px;
+  margin-bottom: 10px!important;
 }
 
 legend,
 .legend {
   font-weight: bold;
   font-size: 18px !important;
+  margin-bottom: 0px!important;
 }
 
 input[type="checkbox"] {
@@ -101,8 +110,8 @@ img {
 .red {
   color: red;
 }
-
-/* Estilos para el select2 */
+/* 
+/* Estilos para el select2 
 .select2-container--default
   .select2-selection--single
   .select2-selection__rendered {
@@ -111,13 +120,13 @@ img {
   line-height: 25px !important;
 }
 
-/*this changes the inside of the dropdown*/
+/*this changes the inside of the dropdown
 .select2-dropdown {
   color: #000;
   line-height: 25px;
   font-size: 15px;
 }
-/*this changes the color inside of the dropdown*/
+/*this changes the color inside of the dropdown
 
 .select2-container--default
   .select2-results__option--highlighted[aria-selected] {
@@ -135,7 +144,7 @@ img {
   height: 100% !important;
 }
 
-/* Flechita cambiar color y posicion */
+/* Flechita cambiar color y posicion 
 .select2-container--default
   .select2-selection--single
   .select2-selection__arrow {
@@ -149,7 +158,7 @@ img {
   border-color: #da9760 transparent transparent transparent !important;
 }
 
-/* no estoy segura si sirve aun*/
+/* no estoy segura si sirve aun
 .dropdown-option .price {
   color: #999;
 }

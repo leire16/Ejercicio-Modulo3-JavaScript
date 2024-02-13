@@ -1,14 +1,18 @@
 function obtenerTopping(categoria) {
-  const checkboxes = document.querySelectorAll(`input[name=${categoria}]:checked`);
-  const toppings = Array.from(checkboxes).map(checkbox => checkbox.value);
+  const checkboxes = document.querySelectorAll(
+    `input[name=${categoria}]:checked`
+  );
+  const toppings = Array.from(checkboxes).map((checkbox) => checkbox.value);
   return toppings; // Devolver un array de valores seleccionados
 }
 
 function limpiarCheckboxes(categoria) {
-  const checkboxes = document.querySelectorAll(`input[name=${categoria}]:checked`);
-  checkboxes.forEach(checkbox => checkbox.checked = false);
+  const checkboxes = document.querySelectorAll(
+    `input[name=${categoria}]:checked`
+  );
+  checkboxes.forEach((checkbox) => (checkbox.checked = false));
 }
-  
+
 function dibujarTopping(ctx, topping) {
   if (topping) {
     const imgTopping = new Image();
@@ -20,7 +24,7 @@ function dibujarTopping(ctx, topping) {
 }
 
 function validarCampoObligatorio(input) {
-  if (input.value=== "") {
+  if (input.value === "") {
     input.classList.add("is-invalid");
     input.classList.add("form-control"); // Agregar clase de Bootstrap
   } else {
@@ -30,7 +34,9 @@ function validarCampoObligatorio(input) {
 }
 
 function validarCheckboxes(container) {
-  const totalSeleccionados = document.querySelectorAll('input[type="checkbox"]:checked').length;
+  const totalSeleccionados = document.querySelectorAll(
+    'input[type="checkbox"]:checked'
+  ).length;
   // Validar que aparezca el mensaje solo cuando no hay checkboxes seleccionados
   if (totalSeleccionados === 0) {
     mostrarMensajeError(container);
@@ -46,7 +52,8 @@ function mostrarMensajeError(container) {
 
   const mensaje = document.createElement("p");
   mensaje.classList.add("red");
-  mensaje.textContent = "Seleccione al menos 1 opción entre las categorías";
+  mensaje.textContent =
+    "Seleccione al menos 1 opción entre las categorías de ingredientes:";
   container.appendChild(mensaje);
 }
 
@@ -58,8 +65,25 @@ function ocultarMensajeError(container) {
 function limpiarMensajesValidacion() {
   // Limpiar mensajes de validación de checkboxes
   const invalidMessages = document.querySelectorAll(".red");
-  invalidMessages.forEach(message => message.parentNode.removeChild(message));
+  invalidMessages.forEach((message) => message.parentNode.removeChild(message));
 }
+
+// Add an event listener for when the DOM content is loaded
+document.addEventListener("DOMContentLoaded", function () {
+  // Get the resultadoPizza element
+  const resultadoPizza = document.getElementById("resultadoPizza");
+  // Get the section2 element
+  const section2 = document.querySelector(".section2");
+
+  // Check if resultadoPizza has content
+  if (resultadoPizza.innerHTML.trim() !== "") {
+    // If there is content, show section2
+    section2.style.display = "block";
+  } else {
+    // If there is no content, hide section2
+    section2.style.display = "none";
+  }
+});
 
 window.addEventListener("DOMContentLoaded", () => {
   const crearButton = document.querySelector("#crearPizza");
@@ -68,16 +92,16 @@ window.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     // Obtener los inputs del formulario
-    const masaInput = document.getElementById('masa');
-    const tamañoInput = document.getElementById('tamaño');
+    const masaInput = document.getElementById("masa");
+    const tamañoInput = document.getElementById("tamaño");
 
     // Obtener las imágenes de los toppings según las elecciones del usuario
-    const toppingCarne = obtenerTopping('carnes');
-    const toppingMar = obtenerTopping('mariscos');
-    const toppingVerdura = obtenerTopping('verduras');
+    const toppingCarne = obtenerTopping("carnes");
+    const toppingMar = obtenerTopping("mariscos");
+    const toppingVerdura = obtenerTopping("verduras");
 
-    const nombrePizzaInput = document.getElementById('nombre-pizza');
-    const horaRecogerInput = document.getElementById('hora-recoger');
+    const nombrePizzaInput = document.getElementById("nombre-pizza");
+    const horaRecogerInput = document.getElementById("hora-recoger");
 
     // En tu script JavaScript
     const container = document.getElementById("messages-container");
@@ -97,16 +121,24 @@ window.addEventListener("DOMContentLoaded", () => {
     validarCampoObligatorio(nombrePizzaInput);
     validarCampoObligatorio(horaRecogerInput);
     // Agregar escuchadores de eventos "input" para validar los campos obligatorios
-    masaInput.addEventListener("change", () => validarCampoObligatorio(masaInput));
-    tamañoInput.addEventListener("change", () => validarCampoObligatorio(tamañoInput));
+    masaInput.addEventListener("change", () =>
+      validarCampoObligatorio(masaInput)
+    );
+    tamañoInput.addEventListener("change", () =>
+      validarCampoObligatorio(tamañoInput)
+    );
 
-    nombrePizzaInput.addEventListener("input", () => validarCampoObligatorio(nombrePizzaInput));
-    horaRecogerInput.addEventListener("input", () => validarCampoObligatorio(horaRecogerInput));
+    nombrePizzaInput.addEventListener("input", () =>
+      validarCampoObligatorio(nombrePizzaInput)
+    );
+    horaRecogerInput.addEventListener("input", () =>
+      validarCampoObligatorio(horaRecogerInput)
+    );
 
     if (container) {
       container.innerHTML = ""; // Limpiar mensajes anteriores
     }
-    
+
     validarCheckboxes(container);
 
     // Agregar escuchador de eventos "change" a todos los checkboxes
@@ -119,7 +151,10 @@ window.addEventListener("DOMContentLoaded", () => {
     });
 
     // Si hay mensajes de validación o algún campo obligatorio está vacío, detener el proceso
-    if (container.querySelector(".red") || document.querySelector(".is-invalid")) {
+    if (
+      container.querySelector(".red") ||
+      document.querySelector(".is-invalid")
+    ) {
       return;
     }
 
@@ -154,33 +189,77 @@ window.addEventListener("DOMContentLoaded", () => {
     agregarImagen(`./assets/img/imagenBase.jpg`);
 
     // Agregar las imágenes de los toppings solo si las rutas son válidas
-    toppingCarne.forEach(topping => agregarImagen(`./assets/img/${topping}.jpg`));
-    toppingMar.forEach(topping => agregarImagen(`./assets/img/${topping}.jpg`));
-    toppingVerdura.forEach(topping => agregarImagen(`./assets/img/${topping}.jpg`));
+    toppingCarne.forEach((topping) =>
+      agregarImagen(`./assets/img/${topping}.jpg`)
+    );
+    toppingMar.forEach((topping) =>
+      agregarImagen(`./assets/img/${topping}.jpg`)
+    );
+    toppingVerdura.forEach((topping) =>
+      agregarImagen(`./assets/img/${topping}.jpg`)
+    );
 
     // Limpiar los inputs
-    document.getElementById('masa').value = "";
-    document.getElementById('tamaño').value = "";
-    document.getElementById('nombre-pizza').value = "";
-    document.getElementById('hora-recoger').value = "";
+    document.getElementById("masa").value = "";
+    document.getElementById("tamaño").value = "";
+    document.getElementById("nombre-pizza").value = "";
+    document.getElementById("hora-recoger").value = "";
 
     // Limpiar los checkboxes de carne, mariscos y verduras
-    limpiarCheckboxes('carnes');
-    limpiarCheckboxes('mariscos');
-    limpiarCheckboxes('verduras');
+    limpiarCheckboxes("carnes");
+    limpiarCheckboxes("mariscos");
+    limpiarCheckboxes("verduras");
+
+    // Scroll to section2
+
+    // Get the resultadoPizza element
+    const resultadoPizza = document.getElementById("resultadoPizza");
+    // Get the section2 element
+    const section2 = document.querySelector(".section2");
+
+    // Check if resultadoPizza has content
+    if (resultadoPizza.innerHTML.trim() !== "") {
+      // If there is content, show section2
+      section2.style.display = "block";
+    } else {
+      // If there is no content, hide section2
+      section2.style.display = "none";
+    }
+
+    // Scroll to section2
+    section2.scrollIntoView({ behavior: "smooth" });
   });
 });
 
-// Añadir precios a los productos. Esto no esta acabado ni mucho menos, hay que mirar que s irve y que no.
+// Añadir precios a los productos.
 
-/*document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
+  const ingredientCategories = ["carnes", "mariscos", "verduras"];
+
+  ingredientCategories.forEach(function (categoria) {
+    const checkboxes = document.querySelectorAll(`input[name=${categoria}]`);
+
+    checkboxes.forEach(function (checkbox) {
+      const price = checkbox.getAttribute("data-price");
+      const label = checkbox.parentNode;
+      const priceSpan = document.createElement("span");
+      priceSpan.textContent = ` - ${price}€`;
+      label.appendChild(priceSpan);
+    });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function () {
   // Define an array of select element ids
-  let selectIds = ["masa", "tamaño", "carnes", "mariscos", "verduras"];
+  let selectIds = ["masa", "tamaño"];
 
   // Loop through each select element
   selectIds.forEach(function (selectId) {
     let select = document.getElementById(selectId);
-    let options = select.getElementsByTagName("option");
+    select.addEventListener("change", actualizarPrecioTotal);
+
+    // Retrieve the options of the current select element
+    let options = select.options;
 
     // Loop through each option of the current select element
     for (let i = 0; i < options.length; i++) {
@@ -192,7 +271,7 @@ window.addEventListener("DOMContentLoaded", () => {
         // Create a span element for the price
         let priceSpan = document.createElement("span");
         priceSpan.className = "price"; // Add a class to style it
-        priceSpan.textContent = " - " + price + "€";
+        priceSpan.textContent = "    +" + price + "€";
 
         // Insert the span after the option text
         option.appendChild(priceSpan);
@@ -200,15 +279,34 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Añadir precios a los productos
+  document.addEventListener("DOMContentLoaded", function () {
+    const ingredientCategories = ["carnes", "mariscos", "verduras"];
+
+    ingredientCategories.forEach(function (categoria) {
+      const checkboxes = document.querySelectorAll(`input[name=${categoria}]`);
+
+      checkboxes.forEach(function (checkbox) {
+        const price = checkbox.getAttribute("data-price");
+        const label = checkbox.parentNode;
+        const priceSpan = document.createElement("span");
+        priceSpan.textContent = ` - ${price}€`;
+        label.appendChild(priceSpan);
+      });
+    });
+  });
+
   // Funcion que calcula el precio total
   function calcularPrecioTotal() {
-    const precioBase = 5; // precio Base
-    let total = precioBase;
+    let total = 0;
 
-    // Add prices of selected checkboxes for each category
+    // Add prices for different products
+
     total += sumarPreciosCheckbox("carnes");
     total += sumarPreciosCheckbox("mariscos");
     total += sumarPreciosCheckbox("verduras");
+    total += obtenerPrecioMasa("masa");
+    total += obtenerPrecioTamaño("tamaño");
 
     return total;
   }
@@ -228,10 +326,26 @@ window.addEventListener("DOMContentLoaded", () => {
     return totalCategoria;
   }
 
+  function obtenerPrecioMasa() {
+    const select = document.getElementById("masa");
+    const selectedOption = select.options[select.selectedIndex];
+    const precioMasa =
+      parseFloat(selectedOption.getAttribute("data-price")) || 0;
+    return precioMasa;
+  }
+
+  function obtenerPrecioTamaño() {
+    const select = document.getElementById("tamaño");
+    const selectedOption = select.options[select.selectedIndex];
+    const precioTamaño =
+      parseFloat(selectedOption.getAttribute("data-price")) || 0;
+    return precioTamaño;
+  }
+
   // Function to update the total price in the HTML
   function actualizarPrecioTotal() {
     const total = calcularPrecioTotal();
-    const formattedTotal = "+" + total + "€"; // Add plus sign
+    const formattedTotal = total + "€"; // Add plus sign
     document.getElementById("totalValue").textContent = formattedTotal;
   }
 
@@ -241,4 +355,4 @@ window.addEventListener("DOMContentLoaded", () => {
     .forEach(function (checkbox) {
       checkbox.addEventListener("change", actualizarPrecioTotal);
     });
-});*/
+});
