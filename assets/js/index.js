@@ -240,8 +240,7 @@ window.addEventListener("DOMContentLoaded", () => {
               )}</p>`
             : ""
         } 
-        </div>
-      </div> 
+     </div></div>
     `;
 
     // Mostrar las imágenes solo si las rutas son válidas
