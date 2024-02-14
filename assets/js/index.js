@@ -68,6 +68,58 @@ function limpiarMensajesValidacion() {
   invalidMessages.forEach((message) => message.parentNode.removeChild(message));
 }
 
+// Funcion que calcula el precio total
+function calcularPrecioTotal() {
+  let total = 0;
+
+  // Add prices for different products
+
+  total += sumarPreciosCheckbox("carnes");
+  total += sumarPreciosCheckbox("mariscos");
+  total += sumarPreciosCheckbox("verduras");
+  total += obtenerPrecioMasa("masa");
+  total += obtenerPrecioTamaño("tamaño");
+
+  return total;
+}
+
+// Function to sum prices of selected checkboxes for a category
+function sumarPreciosCheckbox(categoria) {
+  const checkboxes = document.querySelectorAll(
+    `input[name=${categoria}]:checked`
+  );
+  let totalCategoria = 0;
+
+  checkboxes.forEach((checkbox) => {
+    const precio = parseFloat(checkbox.getAttribute("data-price"));
+    totalCategoria += precio;
+  });
+
+  return totalCategoria;
+}
+
+function obtenerPrecioMasa() {
+  const select = document.getElementById("masa");
+  const selectedOption = select.options[select.selectedIndex];
+  const precioMasa = parseFloat(selectedOption.getAttribute("data-price")) || 0;
+  return precioMasa;
+}
+
+function obtenerPrecioTamaño() {
+  const select = document.getElementById("tamaño");
+  const selectedOption = select.options[select.selectedIndex];
+  const precioTamaño =
+    parseFloat(selectedOption.getAttribute("data-price")) || 0;
+  return precioTamaño;
+}
+
+// Function to update the total price in the HTML
+function actualizarPrecioTotal() {
+  const total = calcularPrecioTotal();
+  const formattedTotal = total + "€"; // Add plus sign
+  document.getElementById("totalValue").textContent = formattedTotal;
+}
+
 // Add an event listener for when the DOM content is loaded
 document.addEventListener("DOMContentLoaded", function () {
   // Get the resultadoPizza element
@@ -158,20 +210,37 @@ window.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Mostrar los textos
+    // Mostrar los textos y las imágenes
     const tweetContainer = document.querySelector(".tweet-container");
     tweetContainer.innerHTML = `
       <div class="title">
         <div class="info">
-          <h4 id="masa" class="name">${masa}</h4>
-          <p id="tamaño">${tamaño}</p>    
-          <p id="toppingCarne">${toppingCarne}</p>  
-          <p id="toppingMar">${toppingMar}</p>  
-          <p id="toppingVerdura">${toppingVerdura}</p>   
-          <p id="nombrePizza">${nombrePizza}</p>
-          <p id="horaRecoger">${horaRecoger}</p>   
-        </div>
-      </div> 
+          <p><strong>Tu nombre:</strong> ${nombrePizza}</p>
+          <p><strong>Hora de recoger:</strong> ${horaRecoger}</p>
+          <p><strong>Tipo de Masa:</strong> ${masa}</p>
+          <p><strong>Tamaño:</strong> ${tamaño}</p>    
+          ${
+            toppingCarne.length > 0
+              ? `<p><strong>Toppings de Carne:</strong> ${toppingCarne.join(
+                  ", "
+                )}</p>`
+              : ""
+          }
+        ${
+          toppingMar.length > 0
+            ? `<p><strong>Toppings de Mar:</strong> ${toppingMar.join(
+                ", "
+              )}</p>`
+            : ""
+        }
+        ${
+          toppingVerdura.length > 0
+            ? `<p><strong>Toppings de Verdura:</strong> ${toppingVerdura.join(
+                ", "
+              )}</p>`
+            : ""
+        } 
+     </div></div>
     `;
 
     // Mostrar las imágenes solo si las rutas son válidas
@@ -233,19 +302,25 @@ window.addEventListener("DOMContentLoaded", () => {
 
 // Añadir precios a los productos.
 
+function createPriceSpan(price) {
+  const priceSpan = document.createElement("span");
+  priceSpan.textContent = ` - ${price}€`;
+  return priceSpan;
+}
+
+function addPriceSpansToCheckboxes(checkboxes) {
+  checkboxes.forEach(function (checkbox) {
+    const price = checkbox.getAttribute("data-price");
+    const label = checkbox.parentNode;
+    label.appendChild(createPriceSpan(price));
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const ingredientCategories = ["carnes", "mariscos", "verduras"];
-
   ingredientCategories.forEach(function (categoria) {
     const checkboxes = document.querySelectorAll(`input[name=${categoria}]`);
-
-    checkboxes.forEach(function (checkbox) {
-      const price = checkbox.getAttribute("data-price");
-      const label = checkbox.parentNode;
-      const priceSpan = document.createElement("span");
-      priceSpan.textContent = ` - ${price}€`;
-      label.appendChild(priceSpan);
-    });
+    addPriceSpansToCheckboxes(checkboxes);
   });
 });
 
@@ -295,59 +370,6 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
-
-  // Funcion que calcula el precio total
-  function calcularPrecioTotal() {
-    let total = 0;
-
-    // Add prices for different products
-
-    total += sumarPreciosCheckbox("carnes");
-    total += sumarPreciosCheckbox("mariscos");
-    total += sumarPreciosCheckbox("verduras");
-    total += obtenerPrecioMasa("masa");
-    total += obtenerPrecioTamaño("tamaño");
-
-    return total;
-  }
-
-  // Function to sum prices of selected checkboxes for a category
-  function sumarPreciosCheckbox(categoria) {
-    const checkboxes = document.querySelectorAll(
-      `input[name=${categoria}]:checked`
-    );
-    let totalCategoria = 0;
-
-    checkboxes.forEach((checkbox) => {
-      const precio = parseFloat(checkbox.getAttribute("data-price"));
-      totalCategoria += precio;
-    });
-
-    return totalCategoria;
-  }
-
-  function obtenerPrecioMasa() {
-    const select = document.getElementById("masa");
-    const selectedOption = select.options[select.selectedIndex];
-    const precioMasa =
-      parseFloat(selectedOption.getAttribute("data-price")) || 0;
-    return precioMasa;
-  }
-
-  function obtenerPrecioTamaño() {
-    const select = document.getElementById("tamaño");
-    const selectedOption = select.options[select.selectedIndex];
-    const precioTamaño =
-      parseFloat(selectedOption.getAttribute("data-price")) || 0;
-    return precioTamaño;
-  }
-
-  // Function to update the total price in the HTML
-  function actualizarPrecioTotal() {
-    const total = calcularPrecioTotal();
-    const formattedTotal = total + "€"; // Add plus sign
-    document.getElementById("totalValue").textContent = formattedTotal;
-  }
 
   // Event listener for checkboxes to update total price when checked/unchecked
   document
