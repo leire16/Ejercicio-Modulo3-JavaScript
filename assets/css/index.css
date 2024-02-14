@@ -91,12 +91,11 @@ img {
   margin-top: 20px;
 }
 
-/* Estilos para las imágenes */
 #resultadoPizza {
-  display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
 }
 
 #resultadoPizza img {
@@ -110,55 +109,14 @@ img {
 .red {
   color: red;
 }
-/* 
-/* Estilos para el select2 
-.select2-container--default
-  .select2-selection--single
-  .select2-selection__rendered {
-  font-size: 15px;
 
-  line-height: 25px !important;
+.aviso {
+  font-size: 11px;
+  margin-top: 1.3rem;
+  margin-left: 1rem;
 }
 
-/*this changes the inside of the dropdown
-.select2-dropdown {
-  color: #000;
-  line-height: 25px;
-  font-size: 15px;
-}
-/*this changes the color inside of the dropdown
-
-.select2-container--default
-  .select2-results__option--highlighted[aria-selected] {
-  background-color: #da9760 !important;
-  color: #fff !important;
-}
-.select2-container--default .select2-selection--single {
-  border-radius: 8px !important;
-  border: 2px solid #da9760 !important;
+#titulo{
   display: flex;
   align-items: center;
-  color: #000 !important;
-  font-size: 15px;
-  padding: 8px !important;
-  height: 100% !important;
-}
-
-/* Flechita cambiar color y posicion 
-.select2-container--default
-  .select2-selection--single
-  .select2-selection__arrow {
-  height: 100% !important;
-  color: #da9760;
-}
-.select2-container--default
-  .select2-selection--single
-  .select2-selection__arrow
-  b {
-  border-color: #da9760 transparent transparent transparent !important;
-}
-
-/* no estoy segura si sirve aun
-.dropdown-option .price {
-  color: #999;
 }

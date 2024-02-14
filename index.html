@@ -37,13 +37,13 @@
         >
           <option value="">-- Selecciona una masa --</option>
           <option
-            value="clasica"
+            value="Clasica"
             data-price="5"
           >
             Clásica
           </option>
           <option
-            value="fina"
+            value="Fina"
             data-price="5"
           >
             Fina
@@ -67,19 +67,19 @@
         >
           <option value="">-- Selecciona un tamaño --</option>
           <option
-            value="individual"
+            value="Individual"
             data-price="0"
           >
             Individual
           </option>
           <option
-            value="mediana"
+            value="Mediana"
             data-price="2"
           >
             Mediana
           </option>
           <option
-            value="familiar"
+            value="Familiar"
             data-price="5"
           >
             Familiar
@@ -87,14 +87,15 @@
         </select>
 
         <div id="checkboxes-container">
-          <fieldset>
-            <div id="messages-container"></div>
-            <legend>Elige tus ingredientes de carne:</legend>
+          <fieldset>        
+            <br>  
+            <div id="titulo"><h2>Elige tus ingredientes</h2><div id="messages-container"></div></div>
+            <legend>Carne:</legend>
             <label
               ><input
                 type="checkbox"
                 name="carnes"
-                value="york"
+                value="York"
                 data-price="0.5"
               />
               York</label
@@ -103,7 +104,7 @@
               ><input
                 type="checkbox"
                 name="carnes"
-                value="bacon"
+                value="Bacon"
                 data-price="1"
               />
               Bacon</label
@@ -112,7 +113,7 @@
               ><input
                 type="checkbox"
                 name="carnes"
-                value="carne vacuno"
+                value="Carne Vacuno"
                 data-price="2"
               />
               Carne Vacuno</label
@@ -121,7 +122,7 @@
               ><input
                 type="checkbox"
                 name="carnes"
-                value="pollo"
+                value="Pollo"
                 data-price="1.5"
               />
               Pollo</label
@@ -130,7 +131,7 @@
               ><input
                 type="checkbox"
                 name="carnes"
-                value="pepperoni"
+                value="Pepperoni"
                 data-price="1.5"
               />
               Pepperoni</label
@@ -138,12 +139,12 @@
           </fieldset>
 
           <fieldset>
-            <legend>Elige tus ingredientes de mar:</legend>
+            <legend>Mar:</legend>
             <label
               ><input
                 type="checkbox"
                 name="mariscos"
-                value="atún"
+                value="Atún"
                 data-price="1"
               />
               Atún</label
@@ -152,7 +153,7 @@
               ><input
                 type="checkbox"
                 name="mariscos"
-                value="anchoas"
+                value="Anchoas"
                 data-price="1.5"
               />
               Anchoas</label
@@ -161,21 +162,20 @@
               ><input
                 type="checkbox"
                 name="mariscos"
-                value="gambas"
+                value="Gambas"
                 data-price="2"
               />
               Gambas</label
             >
-            <!-- Agrega más opciones de mariscos según tus necesidades -->
           </fieldset>
 
           <fieldset>
-            <legend>Elige tus ingredientes de verduras:</legend>
+            <legend>Verduras:</legend>
             <label
               ><input
                 type="checkbox"
                 name="verduras"
-                value="champiñon"
+                value="Champiñon"
                 data-price="1"
               />
               Champiñon</label
@@ -184,7 +184,7 @@
               ><input
                 type="checkbox"
                 name="verduras"
-                value="cebolla"
+                value="Cebolla"
                 data-price="0.5"
               />
               Cebolla</label
@@ -193,7 +193,7 @@
               ><input
                 type="checkbox"
                 name="verduras"
-                value="tomate"
+                value="Tomate"
                 data-price="0.5"
               />
               Tomate</label
@@ -202,7 +202,7 @@
               ><input
                 type="checkbox"
                 name="verduras"
-                value="pimiento"
+                value="Pimiento"
                 data-price="1"
               />
               Pimiento</label
@@ -210,6 +210,7 @@
           </fieldset>
         </div>
 
+        <br>  
         <label
           for="nombre-pizza"
           class="legend"
@@ -260,7 +261,6 @@
       </div>
     </div>
 
-    <!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
     <script src="./assets/js/index.js"></script>
   </body>
 </html>
